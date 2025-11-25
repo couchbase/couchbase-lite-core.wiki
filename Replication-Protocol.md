@@ -127,6 +127,7 @@ If this message is sent before `getCollections` then the replication will operat
 
 | Request             | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
+| `uuid` | The UUID of the underlying database |
 | Body | JSON dictionary: `{"collections": [...], "checkpoint_ids": [...]}` |
 
 A collection-aware parallelized version of `getCheckpoint`.  If this message is sent before any `getCheckpoint` calls then replication will operate in 3.1+ mode, which can fully handle collections; see Multi-Collection Support.
