@@ -72,7 +72,7 @@ This works even if either of `newFoo` and/or `s->foo` are NULL, or if they point
 
 ## In C++
 
-In C++ APIs, we don't call retain/release directly. Instead we use "smart pointer" types that do it automatically: these are `Retained<>` and `RetainedConst<>`, as well as `alloc_slice`, `MutableDict`, `MutableArray`. These all do the 'three-step tango' described above when you assign to them, and they release their value in their destructor.
+In C++ APIs, we don't call retain/release directly. Instead we use "smart pointer" types that do it automatically: these are `Retained<>` and `Ref<>`, as well as `alloc_slice`, `MutableDict`, `MutableArray`. These all do the 'three-step tango' described above when you assign to them, and they release their value in their destructor.
 
 ```c++
 // Temporarily using a ref-counted result:
@@ -91,7 +91,10 @@ void mystruct::updateFoo(C4Foo* newFoo) {
 }
 ```
 
-> Note: Another benefit of `Retained<>` (and the other smart pointers) is that they're automatically initialized to NULL, not garbage like a raw pointer.
+> [!TIP]
+> Another benefit of `Retained<>` (and the other smart pointers) is that they're automatically initialized to NULL, not garbage like a raw pointer.
+
+There is more extensive documentation of `RefCounted` and `Retained<>` in the [Fleece wiki](https://github.com/couchbase/fleece/wiki/Reference-Counting).
 
 ### Passing parameters
 
