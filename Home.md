@@ -28,7 +28,7 @@
 ## Internal Design Documents
 
 * [Class Overview](https://github.com/couchbase/couchbase-lite-core/blob/master/docs/overview/index.md) and [Replicator Class Overview](https://github.com/couchbase/couchbase-lite-core/blob/master/docs/overview/Replicator.md) -- A tour of the implementation's internal C++ classes
-* [[Database Schema]] -- What's in the SQLite database
+* [Database Schema](https://github.com/couchbase/couchbase-lite-core/blob/master/docs/overview/Schema.md) -- What's in the SQLite database
 * [[Revision Trees]] -- Deep innards of how documents are stored
 * [[Query Engine]] -- How we implemented N1QL-like queries
 * [Replicator Overview](https://github.com/couchbase/couchbase-lite-core/blob/master/docs/overview/Replicator.md) -- A tour of the replicator implementation
