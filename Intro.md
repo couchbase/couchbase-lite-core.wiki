@@ -1,3 +1,6 @@
+> [!NOTE]
+> This document describes using the LiteCore API; it's aimed at developers working on Couchbase Lite platforms or on LiteCore itself.  Documentation on the internals of LiteCore itself can be found [inside the repo](https://github.com/couchbase/couchbase-lite-core/blob/master/docs/overview/index.md).
+
 # Intro To LiteCore
 
 **Couchbase Lite Core**, or **LiteCore**, is the shared cross-platform implementation of Couchbase Lite’s functionality. LiteCore itself is written in C++ and exposes C and [[C++|CPlusPlus API]] APIs. Each Couchbase Lite implementation wraps around LiteCore’s API to provide an idiomatic API in its platform’s language.
