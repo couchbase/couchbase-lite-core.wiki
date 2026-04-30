@@ -273,6 +273,8 @@ use `proposeChanges` instead.
 
 | Response             | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
+|`blobs`| If true, the peer prefers blobs in Couchbase Lite format, not SG-style attachments.|
+|`deltas`| If true, the peer supports delta compression.|
 |`maxHistory`| Max length of revision history to send _(optional; not used with version vectors)_|
 |Body| JSON array, one item per change |
 
@@ -326,6 +328,9 @@ appropriate status code as described below.
 
 | Response             | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
+|`blobs`| If true, the peer prefers blobs in Couchbase Lite format, not SG-style attachments.|
+|`deltas`| If true, the peer supports delta compression.|
+|`maxHistory`| Max length of revision history to send _(optional; not used with version vectors)_|
 |Body| JSON array of status numbers |
 
 The response message indicates which of the proposed changes are allowed
