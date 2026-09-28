@@ -431,16 +431,19 @@ the replication to get stuck. This message SHOULD be sent as `noreply`.
 | -------------------- | ------------------------------------------------------------ |
 |`collection`| Index of the collection to operate on for this message. *[3.1+]* |
 |`digest`| Attachment digest (as found in document `_attachments` metadata.)|
+|`docID` | The ID of the document referencing the attachment. _(required by SG; optional to CBL)_|
+|`compress` | If true, hints that the BLIP response should be compressed. _(optional)_|
 
 Sent by either peer. Requests the body of an attachment, given its digest. This is sent by
 the recipient of a `rev` message if it determines that the revision
 contains an attachment whose contents it does not have (i.e. its `digest` property does not match that of any known attachment.)
 
-> [!NOTE]
-> This request is problematic: it assumes that the recipient indexes
-> attachments by digest, which is true of Couchbase Mobile but not
-> necessarily of other implementations. Adding the document and revision
-> ID to the properties would help.
+Sync Gateway no longer has a global mapping of digests to attachments, so it requires the `docID` key to be able to locate the contents.
+
+The recipient SHOULD NOT send a compressed response unless the request's `compress` property is true, or unless it has prior
+knowledge that the contents are compressible.
+(Most data types used in attachments -- JPEG, MP3, PDF... -- are already compressed, so BLIP's gzip compression would just waste CPU
+cycles without reducing bandwidth.)
 
 ##### Security
 
