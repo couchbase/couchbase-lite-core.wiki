@@ -12,6 +12,16 @@ This document specifies the replication protocol in use by Couchbase Mobile
 
 1. **[Connections and Messaging][Connections]**
 2. **[RPC Messages][Messages]**
+   - [`getCheckpoint`](#getcheckpoint)
+   - [`getCollections`](#getcollections)
+   - [`setCheckpoint`](#setcheckpoint)
+   - [`subChanges`](#subchanges)
+   - [`changes`](#changes)
+   - [`proposeChanges`](#proposechanges)
+   - [`rev`](#rev)
+   - [`norev`](#norev)
+   - [`getAttachment`](#getattachment)
+   - [`proveAttachment`](#proveattachment)
 3. **[Versioning: Revision IDs, Histories, Sequences][Versioning]**
 4. **[Checkpoints][Checkpoints]**
 5. **[The Replication Algorithm][Algorithm]**
