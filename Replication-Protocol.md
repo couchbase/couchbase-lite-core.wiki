@@ -376,10 +376,10 @@ all of the proposed revisions.
 
 Sent by either peer. Sends one document revision, either meant for the specified collection or the default collection if one is not specified. 
 
-The `id`, `rev`, `deleted` properties are
-optional if corresponding `_id`, `_rev`, `_deleted` properties exist in
-the JSON body (and vice versa.) The `sequence` property is optional
-unless this message was unsolicited. 
+The `id`, `rev`, `deleted`, `removed` properties are optional if corresponding `_id`, `_rev`, `_deleted`, `_removed` properties exist in
+the JSON body (and vice versa.) The `sequence` property is optional unless this message was unsolicited (q.v.)
+
+A `"_removed": true` property in the body means the document has been removed from accessible channels, just like the Removed flag in a `changes` request.
 
 If the `noconflicts` flag is set, or if the recipient is in conflict-free mode,
 it MUST check whether the `history` array contains the current local revision ID,
