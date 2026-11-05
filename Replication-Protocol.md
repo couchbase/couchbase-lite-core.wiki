@@ -544,16 +544,22 @@ In the `rev` message the current revision is given its own property (`rev`), so 
 
 ### Version Vectors *[4.0+]*
 
-A revision ID, also called a ***version***, consists of a hexadecimal number of up to 16 digits, followed by an `@` sign, followed by 22 characters in the base64 alphabet (upper and lower case, digits, `+` and `/`.) The first component is the timestamp, the second the encoded source ID.
+A revision ID, also called a **version**, consists of a hexadecimal number of up to 16 digits, followed by an `@` sign, followed by 22 characters in the base64 alphabet (upper and lower case, digits, `+` and `/`.) The first component is the timestamp, the second the encoded source ID.
 
-* The timestamp is usually a count of nanoseconds since the Unix epoch, currently around 2^60. It fits in a 64-bit integer. It SHOULD be interpreted as unsigned (although it won’t overflow a signed integer for a century or more.) It MUST NOT be stored in an IEEE double or it will lose precision; for the same reason it SHOULD NOT be encoded in JSON as a number.
-* The source ID is a 128-bit (16-byte) number, most likely a UUID. It identifies who (which database instance) created the revision.
+- The **timestamp** is usually a count of nanoseconds since the Unix epoch, currently around 2^60. It fits in a 64-bit integer. It SHOULD be interpreted as unsigned (although it won’t overflow a signed integer for a century or more.) It MUST NOT be stored in an IEEE double or it will lose precision; for the same reason it SHOULD NOT be encoded in JSON as a number.
+- The **source ID** is a 128-bit (16-byte) number, most likely a UUID. It identifies who (which database instance) created the revision.
 
-A revision history is a ***version vector***. It’s a series of one or more versions delimited by either a comma or semicolon, with optional whitespace after. Most versions are separated by commas, but one semicolon is used to separate the _current_ and _merge_ version(s) from the _historical_ ones.
+A revision history is a **version vector**. It consists of:
+- One version, the **current version** or "cv".
+- Zero more versions preceded by commas; these are **merge versions** or "mv". In practice there are either zero or two. 
+- A semicolon
+- Zero or more versions delimited by commas; these are **previous versions** or "pv".
 
-The current version must come first, then zero or two merge versions, then zero or more historical versions. The current version is causally later than the rest, and the merge versions are causally later than the historical versions.
+The current version is causally later than the rest, and the merge versions are causally later than the previous versions.
 
-In the `rev` message the current version is given its own property (`rev`), so to avoid redundancy the `history` property contains a version vector that omits the current version.
+A source ID MUST NOT appear more than once, except that one merge version may have the same source ID as the current version.
+
+In a `rev` message the current version is given its own property (`rev`), so to avoid redundancy the `history` property contains a version vector that omits the current version and its trailing comma or semicolon.
 
 ### Sequence IDs
 
